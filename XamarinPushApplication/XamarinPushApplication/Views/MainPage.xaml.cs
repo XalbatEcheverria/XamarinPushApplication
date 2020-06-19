@@ -31,6 +31,9 @@ namespace XamarinPushApplication.Views
                     case (int)MenuItemType.About:
                         MenuPages.Add(id, new NavigationPage(new AboutPage()));
                         break;
+                    case (int)MenuItemType.EditStuff:
+                        MenuPages.Add(id, new NavigationPage(new EditStuffPage()));
+                        break;
                 }
             }
 

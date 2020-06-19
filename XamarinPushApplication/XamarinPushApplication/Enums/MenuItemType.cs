@@ -3,6 +3,7 @@
     public enum MenuItemType
     {
         Home,
-        About
+        About,
+        EditStuff
     }
 }

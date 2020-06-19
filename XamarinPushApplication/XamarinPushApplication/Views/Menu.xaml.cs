@@ -14,7 +14,8 @@ namespace XamarinPushApplication.Views
         List<HomeMenuItem> MenuItems => new List<HomeMenuItem>
             {
                 new HomeMenuItem { Id = MenuItemType.Home, Title = "Home" },
-                new HomeMenuItem { Id = MenuItemType.About, Title = "About" }
+                new HomeMenuItem { Id = MenuItemType.About, Title = "About" },
+                new HomeMenuItem { Id = MenuItemType.EditStuff, Title = "Edit Stuff" }
             };
 
         public Menu()
