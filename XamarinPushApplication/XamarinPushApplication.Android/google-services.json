@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "895670893355",
+    "firebase_url": "https://ul-notification-server.firebaseio.com",
+    "project_id": "ul-notification-server",
+    "storage_bucket": "ul-notification-server.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:895670893355:android:d8d18035d00dce239da36e",
+        "android_client_info": {
+          "package_name": "com.companyname.xamarintest"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "895670893355-9rjirlohg7ub2q2n96nkf49a6b7v8euf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBXJGgSwRnuw7HTzQpGO2Wl9oHfxSTgc6Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "895670893355-9rjirlohg7ub2q2n96nkf49a6b7v8euf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
