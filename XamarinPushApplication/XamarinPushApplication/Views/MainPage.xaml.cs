@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using XamarinPushApplication.Enums;
+using XamarinPushApplication.Firebase;
 
 namespace XamarinPushApplication.Views
 {
@@ -13,9 +14,11 @@ namespace XamarinPushApplication.Views
     public partial class MainPage : MasterDetailPage
     {
         readonly Dictionary<int, NavigationPage> MenuPages = new Dictionary<int, NavigationPage>();
+        private IFirebaseMessaging _messaging;
 
-        public MainPage()
+        public MainPage(IFirebaseMessaging messaging)
         {
+            _messaging = messaging;
             InitializeComponent();
         }
 
@@ -33,6 +36,9 @@ namespace XamarinPushApplication.Views
                         break;
                     case (int)MenuItemType.EditStuff:
                         MenuPages.Add(id, new NavigationPage(new EditStuffPage()));
+                        break;
+                    case (int)MenuItemType.FirebaseLogging:
+                        MenuPages.Add(id, new NavigationPage(new FirebaseLogging(_messaging)));
                         break;
                 }
             }

@@ -4,6 +4,7 @@
     {
         Home,
         About,
-        EditStuff
+        EditStuff,
+        FirebaseLogging
     }
 }

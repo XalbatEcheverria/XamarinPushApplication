@@ -1,15 +1,18 @@
 ﻿using Xamarin.Forms;
+using XamarinPushApplication.Firebase;
 using XamarinPushApplication.Views;
 
 namespace XamarinPushApplication
 {
     public partial class App : Application
     {
-        public App()
+        private IFirebaseMessaging _messaging;
+
+        public App(IFirebaseMessaging messaging)
         {
             InitializeComponent();
-
-            MainPage = new MainPage();
+            _messaging = messaging;
+            MainPage = new MainPage(messaging);
         }
 
         protected override void OnStart()
