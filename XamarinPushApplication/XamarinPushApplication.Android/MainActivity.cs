@@ -4,10 +4,11 @@ using Android.Runtime;
 using Android.OS;
 using XamarinPushApplication.Droid.Messaging;
 using Android.Util;
+using Android.Content;
 
 namespace XamarinPushApplication.Droid
 {
-    [Activity(Label = "XamarinPushApplication", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
+    [Activity(Label = "XamarinPushApplication", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation, LaunchMode = LaunchMode.SingleTop)]
     public class MainActivity : Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
         const string TAG = "XamarinPushApp";
@@ -39,6 +40,11 @@ namespace XamarinPushApplication.Droid
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
 
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
+
+        protected override void OnDestroy()
+        {
+            base.OnDestroy();
         }
     }
 }

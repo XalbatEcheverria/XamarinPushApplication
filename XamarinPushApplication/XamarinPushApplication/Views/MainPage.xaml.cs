@@ -4,7 +4,7 @@ using System.ComponentModel;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using XamarinPushApplication.Enums;
-using XamarinPushApplication.Firebase;
+using XamarinPushApplication.Interfaces;
 
 namespace XamarinPushApplication.Views
 {

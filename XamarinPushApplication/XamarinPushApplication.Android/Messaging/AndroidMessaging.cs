@@ -1,16 +1,13 @@
 ﻿using Android.App;
 using Android.Content;
 using Android.Gms.Common;
-using Android.Gms.Tasks;
 using Android.OS;
 using System;
 using System.Threading.Tasks;
-using XamarinPushApplication.Firebase;
+using XamarinPushApplication.Interfaces;
 
 namespace XamarinPushApplication.Droid.Messaging
 {
-    [Service]
-    [IntentFilter(new[] { "com.google.firebase.MESSAGING_EVENT" })]
     public class AndroidMessaging : IFirebaseMessaging
     {
         internal static readonly string CHANNEL_ID = "userlock_notification_channel";
@@ -59,7 +56,7 @@ namespace XamarinPushApplication.Droid.Messaging
 
         public async Task<string> GetToken()
         {
-            return await MyFirebaseMessagingService.GetToken();
+            return await MessagingService.GetToken();
         }
     }
 }

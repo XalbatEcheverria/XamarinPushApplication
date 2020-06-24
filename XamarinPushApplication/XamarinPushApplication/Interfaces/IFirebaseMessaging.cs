@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace XamarinPushApplication.Firebase
+namespace XamarinPushApplication.Interfaces
 {
     public interface IFirebaseMessaging
     {

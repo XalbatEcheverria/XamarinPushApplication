@@ -1,5 +1,5 @@
 ﻿using Xamarin.Forms;
-using XamarinPushApplication.Firebase;
+using XamarinPushApplication.Interfaces;
 using XamarinPushApplication.Views;
 
 namespace XamarinPushApplication

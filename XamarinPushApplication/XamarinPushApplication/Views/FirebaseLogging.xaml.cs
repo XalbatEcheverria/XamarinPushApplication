@@ -3,7 +3,7 @@ using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
-using XamarinPushApplication.Firebase;
+using XamarinPushApplication.Interfaces;
 
 namespace XamarinPushApplication.Views
 {
