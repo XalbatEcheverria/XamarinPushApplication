@@ -1,6 +1,5 @@
 ﻿using Android.App;
 using Android.Content;
-using Android.Util;
 
 namespace XamarinPushApplication.Droid.Messaging
 {
@@ -13,7 +12,6 @@ namespace XamarinPushApplication.Droid.Messaging
             int notificationId = intent.GetIntExtra("notificationId", 0);
             var manager = (NotificationManager)context.GetSystemService(Context.NotificationService);
             manager.Cancel(notificationId);
-            Log.Debug("MFAReceiver", intent.GetStringExtra("action"));
         }
     }
 }

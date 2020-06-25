@@ -10,8 +10,8 @@ namespace XamarinPushApplication.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class FirebaseLogging : ContentPage
     {
-        private readonly IFirebaseMessaging _messaging;
-        public FirebaseLogging(IFirebaseMessaging messaging)
+        private readonly ITokenAccessor _messaging;
+        public FirebaseLogging(ITokenAccessor messaging)
         {
             _messaging = messaging;
             InitializeComponent();

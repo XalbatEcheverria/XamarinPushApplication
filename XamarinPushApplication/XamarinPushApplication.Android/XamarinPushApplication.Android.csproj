@@ -70,9 +70,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainActivity.cs" />
-    <Compile Include="Messaging\AndroidMessaging.cs" />
+    <Compile Include="Messaging\MessageManager.cs" />
+    <Compile Include="Messaging\MessagingInitializer.cs" />
     <Compile Include="Messaging\MFABroadcastReceiver.cs" />
     <Compile Include="Messaging\MessagingService.cs" />
+    <Compile Include="Messaging\TokenAccessor.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

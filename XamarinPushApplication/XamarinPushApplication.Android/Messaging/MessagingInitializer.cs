@@ -8,16 +8,10 @@ using XamarinPushApplication.Interfaces;
 
 namespace XamarinPushApplication.Droid.Messaging
 {
-    public class AndroidMessaging : IFirebaseMessaging
+    public class MessagingInitializer
     {
         internal static readonly string CHANNEL_ID = "userlock_notification_channel";
         internal static readonly int NOTIFICATION_ID = 100;
-
-        public AndroidMessaging(Context context)
-        {
-            CheckPlayServicesAvailable(context);
-            CreateNotificationChannel(context);
-        }
 
         public static void CheckPlayServicesAvailable(Context context)
         {
@@ -35,7 +29,7 @@ namespace XamarinPushApplication.Droid.Messaging
             }
         }
 
-        private void CreateNotificationChannel(Context context)
+        public static void CreateNotificationChannel(Context context)
         {
             if (Build.VERSION.SdkInt < BuildVersionCodes.O)
             {
@@ -52,11 +46,6 @@ namespace XamarinPushApplication.Droid.Messaging
 
             var notificationManager = (NotificationManager)context.GetSystemService(Context.NotificationService);
             notificationManager.CreateNotificationChannel(channel);
-        }
-
-        public async Task<string> GetToken()
-        {
-            return await MessagingService.GetToken();
         }
     }
 }

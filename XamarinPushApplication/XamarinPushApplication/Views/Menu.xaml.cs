@@ -13,10 +13,10 @@ namespace XamarinPushApplication.Views
 
         List<HomeMenuItem> MenuItems => new List<HomeMenuItem>
             {
-                new HomeMenuItem { Id = MenuItemType.Home, Title = "Home" },
-                new HomeMenuItem { Id = MenuItemType.About, Title = "About" },
-                new HomeMenuItem { Id = MenuItemType.EditStuff, Title = "Edit Stuff" },
-                new HomeMenuItem { Id = MenuItemType.FirebaseLogging, Title = "Firebase Logging" }
+                new HomeMenuItem { Id = RequestedPage.Home, Title = "Home" },
+                new HomeMenuItem { Id = RequestedPage.About, Title = "About" },
+                new HomeMenuItem { Id = RequestedPage.EditStuff, Title = "Edit Stuff" },
+                new HomeMenuItem { Id = RequestedPage.FirebaseLogging, Title = "Firebase Logging" }
             };
 
         public Menu()
@@ -26,13 +26,13 @@ namespace XamarinPushApplication.Views
             ListViewMenu.ItemsSource = MenuItems;
             ListViewMenu.SelectedItem = MenuItems[0];
 
-            ListViewMenu.ItemSelected += async (sender, e) =>
+            ListViewMenu.ItemSelected += (sender, e) =>
             {
                 if (e.SelectedItem == null)
                     return;
                 int id = (int)((HomeMenuItem)e.SelectedItem).Id;
 
-                await RootPage.NavigateFromMenu(id);
+                RootPage.NavigateFromMenu(id);
             };
         }
     }

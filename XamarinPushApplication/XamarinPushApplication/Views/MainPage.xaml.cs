@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel;
-using System.Threading.Tasks;
 using Xamarin.Forms;
 using XamarinPushApplication.Enums;
 using XamarinPushApplication.Interfaces;
@@ -14,31 +12,39 @@ namespace XamarinPushApplication.Views
     public partial class MainPage : MasterDetailPage
     {
         readonly Dictionary<int, NavigationPage> MenuPages = new Dictionary<int, NavigationPage>();
-        private IFirebaseMessaging _messaging;
+        private readonly ITokenAccessor _tokenAccessor;
 
-        public MainPage(IFirebaseMessaging messaging)
+        public MainPage(ITokenAccessor tokenAccessor, int id )
         {
-            _messaging = messaging;
+            _tokenAccessor = tokenAccessor;
             InitializeComponent();
+            NavigateFromMenu(id);
         }
 
-        public async Task NavigateFromMenu(int id)
+        public void NavigateFromMenu(int id)
         {
+            var messageManager = InjectionContainer.IoCContainer.GetInstance<IMessageManager>();
+            if (id == (int)RequestedPage.Home && messageManager.MessagePending)
+                id = (int)RequestedPage.MFA;
+
             if (!MenuPages.ContainsKey(id))
             {
                 switch (id)
                 {
-                    case (int)MenuItemType.Home:
+                    case (int)RequestedPage.Home:
                         MenuPages.Add(id, new NavigationPage(new HomePage()));
                         break;
-                    case (int)MenuItemType.About:
+                    case (int)RequestedPage.About:
                         MenuPages.Add(id, new NavigationPage(new AboutPage()));
                         break;
-                    case (int)MenuItemType.EditStuff:
+                    case (int)RequestedPage.EditStuff:
                         MenuPages.Add(id, new NavigationPage(new EditStuffPage()));
                         break;
-                    case (int)MenuItemType.FirebaseLogging:
-                        MenuPages.Add(id, new NavigationPage(new FirebaseLogging(_messaging)));
+                    case (int)RequestedPage.FirebaseLogging:
+                        MenuPages.Add(id, new NavigationPage(new FirebaseLogging(_tokenAccessor)));
+                        break;
+                    case (int)RequestedPage.MFA:
+                        MenuPages.Add(id, new NavigationPage(new MFA()));
                         break;
                 }
             }
@@ -48,10 +54,6 @@ namespace XamarinPushApplication.Views
             if (newPage != null && Detail != newPage)
             {
                 Detail = newPage;
-
-                if (Device.RuntimePlatform == Device.Android)
-                    await Task.Delay(100);
-
                 IsPresented = false;
             }
         }

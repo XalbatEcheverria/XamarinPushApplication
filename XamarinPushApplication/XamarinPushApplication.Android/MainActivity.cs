@@ -5,6 +5,14 @@ using Android.OS;
 using XamarinPushApplication.Droid.Messaging;
 using Android.Util;
 using Android.Content;
+using XamarinPushApplication.Interfaces;
+using SimpleInjector;
+using XamarinPushApplication.Views;
+using Xamarin.Forms;
+using Xamarin.Forms.Platform.Android;
+using XamarinPushApplication.Enums;
+using static Android.App.ActivityManager;
+using System;
 
 namespace XamarinPushApplication.Droid
 {
@@ -12,15 +20,19 @@ namespace XamarinPushApplication.Droid
     public class MainActivity : Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
         const string TAG = "XamarinPushApp";
+        MainActivity Instance;
+        ITokenAccessor _tokenAccessor;
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
+            base.OnCreate(savedInstanceState);
+            Xamarin.Essentials.Platform.Init(this, savedInstanceState);
+            Forms.Init(this, savedInstanceState);
+
+            Instance = this;
+
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
-
-            base.OnCreate(savedInstanceState);
-
-            Xamarin.Essentials.Platform.Init(this, savedInstanceState);
-            Xamarin.Forms.Forms.Init(this, savedInstanceState);
 
             if (Intent.Extras != null)
             {
@@ -30,10 +42,13 @@ namespace XamarinPushApplication.Droid
                     Log.Debug(TAG, "Key: {0} Value: {1}", key, value);
                 }
             }
+            MessagingInitializer.CheckPlayServicesAvailable(this);
+            MessagingInitializer.CreateNotificationChannel(this);
 
-            var messaging = new AndroidMessaging(this);
+            InjectionContainer.IoCContainer.Register<IMessageManager, MessageManager>(Lifestyle.Singleton);
 
-            LoadApplication(new App(messaging));
+            _tokenAccessor = new TokenAccessor();
+            LoadApplication(new App(_tokenAccessor));
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Permission[] grantResults)
         {
@@ -45,6 +60,10 @@ namespace XamarinPushApplication.Droid
         protected override void OnDestroy()
         {
             base.OnDestroy();
+        }
+        protected override void OnNewIntent(Intent intent)
+        {
+            LoadApplication(new App(_tokenAccessor, (int)RequestedPage.MFA));
         }
     }
 }

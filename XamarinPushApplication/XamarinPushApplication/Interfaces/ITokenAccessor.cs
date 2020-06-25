@@ -2,7 +2,7 @@
 
 namespace XamarinPushApplication.Interfaces
 {
-    public interface IFirebaseMessaging
+    public interface ITokenAccessor
     {
         Task<string> GetToken();
     }

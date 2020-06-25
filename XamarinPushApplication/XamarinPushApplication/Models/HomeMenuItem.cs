@@ -5,7 +5,7 @@ namespace XamarinPushApplication.Models
 {
     public class HomeMenuItem
     {
-        public MenuItemType Id { get; set; }
+        public RequestedPage Id { get; set; }
         public string Title { get; set; }
     }
 }

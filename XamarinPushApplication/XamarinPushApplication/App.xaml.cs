@@ -6,13 +6,13 @@ namespace XamarinPushApplication
 {
     public partial class App : Application
     {
-        private IFirebaseMessaging _messaging;
-
-        public App(IFirebaseMessaging messaging)
+        public App(ITokenAccessor tokenAccessor, int id = 0)
         {
             InitializeComponent();
-            _messaging = messaging;
-            MainPage = new MainPage(messaging);
+            Device.SetFlags(new[] {
+                "SwipeView_Experimental"
+            });
+            MainPage = new MainPage(tokenAccessor, id);
         }
 
         protected override void OnStart()

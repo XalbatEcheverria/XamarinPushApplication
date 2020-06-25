@@ -1,10 +1,11 @@
 ﻿namespace XamarinPushApplication.Enums
 {
-    public enum MenuItemType
+    public enum RequestedPage
     {
         Home,
         About,
         EditStuff,
-        FirebaseLogging
+        FirebaseLogging,
+        MFA
     }
 }

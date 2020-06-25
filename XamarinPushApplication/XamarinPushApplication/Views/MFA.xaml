@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="XamarinPushApplication.Views.MFA">
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="EndAndExpand" Orientation="Horizontal">
+            <Button Text="Accept"
+                    TextColor="White"
+                    BackgroundColor="MediumSpringGreen"
+                    Padding="10"
+                    Margin="5"
+                    Clicked="Accept_Invoked"
+                    HorizontalOptions="FillAndExpand"/>
+            <Button Text="Deny"
+                    TextColor="White"
+                    BackgroundColor="OrangeRed"
+                    Padding="10"
+                    Margin="5"
+                    Clicked="Deny_Invoked"
+                    HorizontalOptions="FillAndExpand"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
