@@ -11,10 +11,7 @@ namespace XamarinPushApplication.Droid.Messaging
 {
     public class MessageManager : IMessageManager
     {
-        private readonly object _dataLock = new { };
         private readonly object _statusLock = new { };
-        private readonly object _idLock = new { };
-
         private bool messagePending = false;
         public bool MessagePending { 
             get{
@@ -27,6 +24,7 @@ namespace XamarinPushApplication.Droid.Messaging
                 }
             }}
 
+        private readonly object _dataLock = new { };
         private IDictionary<string, string> messageData;
         public IDictionary<string, string> MessageData
         {
@@ -43,6 +41,7 @@ namespace XamarinPushApplication.Droid.Messaging
             }
         }
 
+        private readonly object _idLock = new { };
         private int? notificationId;
         public int? NotificationId
         {
@@ -58,6 +57,41 @@ namespace XamarinPushApplication.Droid.Messaging
                 }
             }
         }
+
+        private readonly object _titleLock = new { };
+        private string _title;
+        public string Title
+        {
+            get
+            {
+                return _title;
+            }
+            set
+            {
+                lock (_titleLock)
+                {
+                    _title = value;
+                }
+            }
+        }
+
+        private readonly object _messageLock = new { };
+        private string _message;
+        public string Message
+        {
+            get
+            {
+                return _message;
+            }
+            set
+            {
+                lock (_messageLock)
+                {
+                    _message = value;
+                }
+            }
+        }
+
 
         public int ScheduleNotification(string title, string message, IDictionary<string, string> additionalData)
         {
@@ -91,6 +125,8 @@ namespace XamarinPushApplication.Droid.Messaging
             MessagePending = true;
             MessageData = additionalData;
             NotificationId = notificationId;
+            Title = title;
+            Message = message;
 
             return notificationId;
         }

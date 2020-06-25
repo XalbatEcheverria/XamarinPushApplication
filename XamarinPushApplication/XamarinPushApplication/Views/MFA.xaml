@@ -6,21 +6,28 @@
              mc:Ignorable="d"
              x:Class="XamarinPushApplication.Views.MFA">
     <ContentPage.Content>
-        <StackLayout VerticalOptions="EndAndExpand" Orientation="Horizontal">
-            <Button Text="Accept"
+        <StackLayout >
+            <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+                <Label Text="{Binding Title}"
+                       TextDecorations="Underline"/>
+                <Label Text="{Binding Message}"/>
+            </StackLayout>
+            <StackLayout VerticalOptions="EndAndExpand" Orientation="Horizontal">
+                <Button Text="Accept"
                     TextColor="White"
                     BackgroundColor="MediumSpringGreen"
                     Padding="10"
                     Margin="5"
                     Clicked="Accept_Invoked"
                     HorizontalOptions="FillAndExpand"/>
-            <Button Text="Deny"
+                <Button Text="Deny"
                     TextColor="White"
                     BackgroundColor="OrangeRed"
                     Padding="10"
                     Margin="5"
                     Clicked="Deny_Invoked"
                     HorizontalOptions="FillAndExpand"/>
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

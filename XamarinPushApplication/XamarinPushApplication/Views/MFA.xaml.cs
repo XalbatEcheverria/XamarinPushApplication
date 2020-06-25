@@ -14,7 +14,7 @@ namespace XamarinPushApplication.Views
 
         public MFA()
         {
-            _messaging = InjectionContainer.IoCContainer.GetInstance<IMessageManager>();
+            BindingContext = _messaging = InjectionContainer.IoCContainer.GetInstance<IMessageManager>();
             InitializeComponent();
         }
 
@@ -36,6 +36,8 @@ namespace XamarinPushApplication.Views
             _messaging.MessageData = null;
             _messaging.DeleteNotification(_messaging.NotificationId);
             _messaging.NotificationId = null;
+            _messaging.Title = null;
+            _messaging.Message = null;
 
             RootPage.NavigateFromMenu((int)RequestedPage.Home);
         }

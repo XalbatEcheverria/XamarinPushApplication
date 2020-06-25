@@ -24,7 +24,9 @@ namespace XamarinPushApplication.Views
         public void NavigateFromMenu(int id)
         {
             var messageManager = InjectionContainer.IoCContainer.GetInstance<IMessageManager>();
-            if (id == (int)RequestedPage.Home && messageManager.MessagePending)
+            if (id == (int)RequestedPage.MFA && MenuPages.ContainsKey(id))
+                MenuPages.Remove(id);
+            else if (id == (int)RequestedPage.Home && messageManager.MessagePending)
                 id = (int)RequestedPage.MFA;
 
             if (!MenuPages.ContainsKey(id))
