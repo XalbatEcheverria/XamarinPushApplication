@@ -54,15 +54,7 @@ namespace XamarinPushApplication.Views
             Loading.IsRunning = false;
             BackgroundColor = actionColor;
             await Task.Delay(1000);
-            ConfirmTreatment();
-        }
-
-        private void ConfirmTreatment()
-        {
-            _messaging.MessagePending = false;
-            _messaging.MessageData = null;
-            _messaging.DeleteNotification(_messaging.NotificationId);
-            _messaging.NotificationId = null;
+            _messaging.DeleteMessage(_messaging.NotificationId);
         }
     }
 }

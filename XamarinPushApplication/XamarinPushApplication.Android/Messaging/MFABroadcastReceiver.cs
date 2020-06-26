@@ -1,5 +1,7 @@
 ﻿using Android.App;
 using Android.Content;
+using XamarinPushApplication.Interfaces;
+using static Android.App.ActivityManager;
 
 namespace XamarinPushApplication.Droid.Messaging
 {
@@ -10,8 +12,21 @@ namespace XamarinPushApplication.Droid.Messaging
         public override void OnReceive(Context context, Intent intent)
         {
             int notificationId = intent.GetIntExtra("notificationId", 0);
-            var manager = (NotificationManager)context.GetSystemService(Context.NotificationService);
-            manager.Cancel(notificationId);
+            var messageManager = InjectionContainer.IoCContainer.GetInstance<IMessageManager>();
+            messageManager.DeleteMessage(notificationId);
+
+            if (IsApplicationForeground())
+            {
+                var contentIntent = new Intent(Application.Context, typeof(MainActivity));
+                Application.Context.StartActivity(contentIntent);
+            }
+        }
+
+        private bool IsApplicationForeground()
+        {
+            var myProcess = new RunningAppProcessInfo();
+            GetMyMemoryState(myProcess);
+            return myProcess.Importance == Importance.Foreground;
         }
     }
 }

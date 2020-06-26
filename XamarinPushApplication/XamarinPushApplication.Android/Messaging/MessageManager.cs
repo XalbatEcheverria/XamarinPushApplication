@@ -6,6 +6,7 @@ using Android.Content;
 using Android.OS;
 using Android.Support.V4.App;
 using XamarinPushApplication.Interfaces;
+using static Android.App.ActivityManager;
 
 namespace XamarinPushApplication.Droid.Messaging
 {
@@ -122,20 +123,38 @@ namespace XamarinPushApplication.Droid.Messaging
             }
             manager.Notify(notificationId, builder.Build());
 
+            Title = title;
+            Target = message;
             MessagePending = true;
             MessageData = additionalData;
             NotificationId = notificationId;
 
+            if (IsApplicationForeground())
+                Application.Context.StartActivity(contentIntent);
+
             return notificationId;
         }
 
-        public void DeleteNotification(int? notificationId)
+        public void DeleteMessage(int? notificationId)
         {
             if(notificationId != null)
             {
                 var manager = (NotificationManager)Application.Context.GetSystemService(Context.NotificationService);
                 manager.Cancel((int)notificationId);
+
+                Title = null;
+                Target = null;
+                MessagePending = false;
+                MessageData = null;
+                NotificationId = null;
             }
+        }
+
+        private bool IsApplicationForeground()
+        {
+            var myProcess = new RunningAppProcessInfo();
+            GetMyMemoryState(myProcess);
+            return myProcess.Importance == Importance.Foreground;
         }
     }
 }

@@ -9,6 +9,6 @@ namespace XamarinPushApplication.Interfaces
         int? NotificationId { get; set; }
 
         int ScheduleNotification(string title, string message, IDictionary<string,string> additionalData);
-        void DeleteNotification(int? notificationId);
+        void DeleteMessage(int? notificationId);
     }
 }

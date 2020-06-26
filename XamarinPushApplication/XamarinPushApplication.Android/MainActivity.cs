@@ -7,17 +7,14 @@ using Android.Util;
 using Android.Content;
 using XamarinPushApplication.Interfaces;
 using SimpleInjector;
-using XamarinPushApplication.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 using XamarinPushApplication.Enums;
-using static Android.App.ActivityManager;
-using System;
 
 namespace XamarinPushApplication.Droid
 {
     [Activity(Label = "XamarinPushApplication", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation, LaunchMode = LaunchMode.SingleTop)]
-    public class MainActivity : Xamarin.Forms.Platform.Android.FormsAppCompatActivity
+    public class MainActivity : FormsAppCompatActivity
     {
         const string TAG = "XamarinPushApp";
         MainActivity Instance;
@@ -63,7 +60,10 @@ namespace XamarinPushApplication.Droid
         }
         protected override void OnNewIntent(Intent intent)
         {
-            LoadApplication(new App(_tokenAccessor, (int)RequestedPage.MFA));
+            if(Intent.Extras != null && Intent.Extras.ContainsKey("notificationId"))
+                LoadApplication(new App(_tokenAccessor, (int)RequestedPage.MFA));
+            else
+                LoadApplication(new App(_tokenAccessor));
         }
     }
 }
