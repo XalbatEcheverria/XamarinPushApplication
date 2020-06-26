@@ -77,7 +77,7 @@ namespace XamarinPushApplication.Droid.Messaging
 
         private readonly object _messageLock = new { };
         private string _message;
-        public string Message
+        public string Target
         {
             get
             {
@@ -125,8 +125,6 @@ namespace XamarinPushApplication.Droid.Messaging
             MessagePending = true;
             MessageData = additionalData;
             NotificationId = notificationId;
-            Title = title;
-            Message = message;
 
             return notificationId;
         }

@@ -40,8 +40,7 @@ namespace XamarinPushApplication.Droid.Messaging
         {
             string title = p0.Data["Title"];
             p0.Data.Remove("Title");
-            string message = p0.Data["Message"];
-            p0.Data.Remove("Message");
+            string message = p0.Data["Target"];
 
             _messageManager.ScheduleNotification(title, message, p0.Data);
         }

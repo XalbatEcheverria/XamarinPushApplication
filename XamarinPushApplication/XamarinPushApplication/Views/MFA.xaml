@@ -8,9 +8,12 @@
     <ContentPage.Content>
         <StackLayout >
             <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
-                <Label Text="{Binding Title}"
-                       TextDecorations="Underline"/>
-                <Label Text="{Binding Message}"/>
+                <Label Text="{Binding Target}"
+                       TextDecorations="Underline"
+                       x:Name="Target"/>
+                <Label Text="{Binding Location}"
+                       x:Name="Location"/>
+                <ActivityIndicator x:Name="Loading" IsVisible="{Binding IsBusy}" IsRunning="{Binding IsBusy}" />
             </StackLayout>
             <StackLayout VerticalOptions="EndAndExpand" Orientation="Horizontal">
                 <Button Text="Accept"
