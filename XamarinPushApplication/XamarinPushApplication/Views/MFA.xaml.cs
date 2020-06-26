@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using XamarinPushApplication.Enums;
@@ -47,14 +46,18 @@ namespace XamarinPushApplication.Views
             Loading.Color = actionColor;
             Target.IsVisible = false;
             Location.IsVisible = false;
-            Loading.IsVisible = true;
-            Loading.IsRunning = true;
+            SetLoadingStatus(true);
             await Task.Delay(2000);
-            Loading.IsVisible = false;
-            Loading.IsRunning = false;
+            SetLoadingStatus(false);
             BackgroundColor = actionColor;
             await Task.Delay(1000);
             _messaging.DeleteMessage(_messaging.NotificationId);
+        }
+
+        private void SetLoadingStatus(bool loading)
+        {
+            Loading.IsVisible = loading;
+            Loading.IsRunning = loading;
         }
     }
 }

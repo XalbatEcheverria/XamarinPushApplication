@@ -1,6 +1,4 @@
-﻿using System.Linq;
-using Xamarin.Forms;
-using XamarinPushApplication.Enums;
+﻿using Xamarin.Forms;
 using XamarinPushApplication.Interfaces;
 using XamarinPushApplication.Views;
 
@@ -8,8 +6,8 @@ namespace XamarinPushApplication
 {
     public partial class App : Application
     {
-        static bool WasMFA = false;
-        ITokenAccessor _tokenAccessor;
+        private static bool WasMFA = false;
+        private readonly ITokenAccessor _tokenAccessor;
 
         public App(ITokenAccessor tokenAccessor, int id = 0)
         {
@@ -34,11 +32,7 @@ namespace XamarinPushApplication
         protected override void OnResume()
         {
             var messageManager = InjectionContainer.IoCContainer.GetInstance<IMessageManager>();
-            if (messageManager.MessagePending)
-            {
-                MainPage = new MainPage(_tokenAccessor, (int)RequestedPage.MFA);
-            }
-            else if (WasMFA)
+            if (!messageManager.MessagePending && WasMFA)
             {
                 MainPage = new MainPage(_tokenAccessor);
             }
