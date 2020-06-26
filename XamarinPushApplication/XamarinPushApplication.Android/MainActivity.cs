@@ -58,6 +58,7 @@ namespace XamarinPushApplication.Droid
         {
             base.OnDestroy();
         }
+
         protected override void OnNewIntent(Intent intent)
         {
             if(Intent.Extras != null && Intent.Extras.ContainsKey("notificationId"))

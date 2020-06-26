@@ -14,7 +14,7 @@ namespace XamarinPushApplication.Views
         readonly Dictionary<int, NavigationPage> MenuPages = new Dictionary<int, NavigationPage>();
         private readonly ITokenAccessor _tokenAccessor;
 
-        public MainPage(ITokenAccessor tokenAccessor, int id )
+        public MainPage(ITokenAccessor tokenAccessor, int id = 0)
         {
             _tokenAccessor = tokenAccessor;
             InitializeComponent();
