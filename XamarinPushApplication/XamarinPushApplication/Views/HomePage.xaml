@@ -8,7 +8,7 @@
              Title="Home">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="HAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA !"
+            <Label Text="Country roads, take me home. &#10;WEST VIRGINIA, MOUTAIN MAMA!"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
         </StackLayout>
